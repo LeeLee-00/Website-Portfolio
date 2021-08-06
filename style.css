@@ -94,6 +94,8 @@ section{
   width: 600;
 }
 
-#contact-section{
-  text-align: center;
+.fa{
+  transform: translateY(-4%);
+display: inline-block;
+text-align: center;
 }
