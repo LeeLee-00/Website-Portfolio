@@ -2,7 +2,7 @@
 
 #hero-section {
   /* This should be an image. */
-  background-color: aqua;
+  background-color: #035397;
   background: url(img/Banner2.jpeg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -11,6 +11,7 @@
   /* Change this values to work for you. */
   padding: clamp(100px, 20vh, 200px) 0;
 }
+
 
 #profile-img {
   /* Change this values to work for you. */
@@ -48,27 +49,29 @@
 }
 
 #mission-section{
-background-color: turquoise;
+background-color: #5089C6;
 font-size: 22px;
 }
 
 #skills-section{
- background-color: turquoise;
+ background-color: #5089C6;
 }
 
 #inspiration-section{
-  background-color: turquoise;
+  background-color: #5089C6;
 }
 #contact-section{
-  background-color: turquoise;
+  background-color: #5089C6;
 }
 footer{
-  background-color: aquamarine;
+  background-color: #035397;
+  color: black;
 }
 
 section{
   min-height: 40vh;
   border: 2px solid grey;
+  padding-top: 65px; 
 }
 
 #contact-section{
@@ -86,7 +89,13 @@ section{
 }
 
 .navbar{
-  background-color: aquamarine !important;
+  background-color: #035397 !important;
+  color: #FFAA4C;
+}
+
+
+li .nav-item{
+  color:white;
 }
 
 .carousel-inner img{
@@ -94,8 +103,7 @@ section{
   width: 600;
 }
 
-.fa{
-  transform: translateY(-4%);
-display: inline-block;
-text-align: center;
+#contact-section{
+  text-align: center;
 }
+
