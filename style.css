@@ -3,7 +3,7 @@
 #hero-section {
   /* This should be an image. */
   background-color: #035397;
-  background: url(img/Banner2.jpeg) no-repeat center center fixed; 
+  background: url(img/VertCode.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -12,6 +12,9 @@
   padding: clamp(100px, 20vh, 200px) 0;
 }
 
+body{
+  background-color: #57837B;
+}
 
 #profile-img {
   /* Change this values to work for you. */
@@ -23,7 +26,7 @@
  
   border-radius: 100px;
   border-style: solid;
-  border-color: #343A40;
+  border-color: #57837B;
   border-width: 7px;
 
   /* Change this values to work for you. */
@@ -41,6 +44,10 @@
   /* Add responsive vertical margins via clamp? come back to this. */
 }
 
+h3{
+  font-size: 50px;
+}
+
 #hero-section p{
   color: #DDDDDD;
   text-align: center;
@@ -49,22 +56,22 @@
 }
 
 #mission-section{
-background-color: #5089C6;
+background-color: #F1ECC3;
 font-size: 22px;
 }
 
 #skills-section{
- background-color: #5089C6;
+ background-color: #F1ECC3;
 }
 
 #inspiration-section{
-  background-color: #5089C6;
+  background-color: #F1ECC3;
 }
 #contact-section{
-  background-color: #5089C6;
+  background-color: #F1ECC3;
 }
 footer{
-  background-color: #035397;
+  background-color: #57837B;
   color: black;
 }
 
@@ -89,14 +96,9 @@ section{
 }
 
 .navbar{
-  background-color: #035397 !important;
-  color: #FFAA4C;
+  background-color: #57837B !important;
 }
 
-
-li .nav-item{
-  color:white;
-}
 
 .carousel-inner img{
   height: 900;
