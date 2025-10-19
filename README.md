@@ -246,7 +246,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Contact
 
-Lee Joey Noel - [your.email@example.com](mailto:your.email@example.com)
+Lee Joey Noel - [leejnoel@gmail.com](mailto:your.leejnoel@gmail.com)
 
 Project Link: [https://github.com/LeeLee-00/Website-Portfolio](https://github.com/LeeLee-00/Website-Portfolio)
 
