@@ -92,6 +92,158 @@ npm start
 - `npm run build` - Builds the app for production to the `build` folder
 - `npm run eject` - Ejects from Create React App (irreversible operation)
 
+## Docker Support
+
+This project includes full Docker support for both development and production environments. Docker provides a consistent, isolated environment that ensures the application runs the same way across different machines.
+
+### Prerequisites for Docker
+
+- [Docker](https://docs.docker.com/get-docker/) (version 20.0 or higher)
+- [Docker Compose](https://docs.docker.com/compose/install/) (usually included with Docker Desktop)
+
+### Docker Files
+
+- **`Dockerfile`** - Multi-stage build configuration for development and production
+- **`docker-compose.yml`** - Orchestration for easy container management
+- **`.dockerignore`** - Excludes unnecessary files from Docker build context
+- **`nginx.conf`** - Production-ready Nginx configuration
+
+### Docker Commands
+
+#### Development Mode
+```bash
+# Start development server with hot reloading
+npm run docker:dev
+
+# Alternative using docker-compose directly
+docker-compose up portfolio-dev
+```
+- **URL**: http://localhost:3000
+- **Features**: Hot reloading, live code changes, development optimizations
+- **Volumes**: Source code mounted for instant updates
+
+#### Production Mode
+```bash
+# Build and run production version
+npm run docker:prod
+
+# Alternative using docker-compose directly
+docker-compose --profile production up portfolio-prod
+```
+- **URL**: http://localhost:8080
+- **Features**: Optimized build, Nginx server, production caching, security headers
+- **Performance**: Compressed assets, efficient static file serving
+
+#### Manual Docker Commands
+```bash
+# Build development image
+docker build -t portfolio-app:dev --target development .
+
+# Build production image
+docker build -t portfolio-app:prod --target production .
+
+# Run development container
+docker run -p 3000:3000 -v $(pwd):/app -v /app/node_modules portfolio-app:dev
+
+# Run production container
+docker run -p 8080:80 portfolio-app:prod
+```
+
+#### Cleanup Commands
+```bash
+# Stop and remove containers, clean up system
+npm run docker:clean
+
+# Manual cleanup
+docker-compose down
+docker system prune -f
+```
+
+### Docker Architecture
+
+#### Multi-Stage Build
+1. **Development Stage**: Node.js with development server and hot reloading
+2. **Build Stage**: Optimized React build process
+3. **Production Stage**: Lightweight Nginx serving static files
+
+#### Production Optimizations
+- **Nginx Configuration**: Gzip compression, caching headers, security headers
+- **Static Asset Caching**: 1-year cache for JS/CSS/images
+- **Single Page Application Support**: Proper routing fallback to index.html
+- **Security Headers**: X-Frame-Options, X-Content-Type-Options, X-XSS-Protection
+
+### Docker Benefits
+
+ **Consistent Environment**: Same Node.js version and dependencies everywhere
+ **Easy Deployment**: Container runs anywhere Docker is supported
+ **Development Isolation**: No conflicts with local Node.js installations
+ **Production Ready**: Optimized Nginx serving with proper caching
+ **Team Collaboration**: Same environment for all developers
+ **CI/CD Ready**: Perfect for automated deployment pipelines
+
+### Troubleshooting Docker
+
+#### Common Issues
+
+**Port Already in Use**:
+```bash
+# Check what's using the port
+lsof -i :3000
+# or
+netstat -tulpn | grep :3000
+
+# Kill the process or use different ports in docker-compose.yml
+```
+
+**Hot Reloading Not Working**:
+- The docker-compose.yml includes `CHOKIDAR_USEPOLLING=true` for file watching
+- Ensure volumes are properly mounted in docker-compose.yml
+
+**Build Fails**:
+```bash
+# Clear Docker cache and rebuild
+docker builder prune
+docker-compose build --no-cache portfolio-dev
+```
+
+**Permission Issues (Linux/macOS)**:
+```bash
+# Fix file permissions
+sudo chown -R $USER:$USER .
+```
+
+#### Development vs Production
+
+| Feature | Development | Production |
+|---------|------------|------------|
+| **Server** | React Dev Server | Nginx |
+| **Port** | 3000 | 8080 |
+| **Hot Reload** |  Yes |  No |
+| **Source Maps** |  Yes |  No |
+| **Optimization** |  No |  Yes |
+| **Caching** |  No |  Yes |
+| **Compression** |  No |  Yes |
+
+### Docker in CI/CD
+
+Example GitHub Actions workflow:
+```yaml
+name: Docker Build and Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker image
+        run: docker build -t portfolio-app:${{ github.sha }} --target production .
+      - name: Deploy to production
+        run: echo "Deploy your container here"
+```
+
 ## Component Overview
 
 ### Header
