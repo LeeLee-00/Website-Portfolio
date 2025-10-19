@@ -171,6 +171,11 @@ debug.log
 # Dependency directories
 jspm_packages/
 
+# Docker
+.docker/
+docker-compose.override.yml
+.dockerignore.bak
+
 # TypeScript cache
 *.tsbuildinfo
 

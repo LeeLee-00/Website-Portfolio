@@ -18,7 +18,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker:dev": "docker-compose up portfolio-dev",
+    "docker:prod": "docker-compose --profile production up portfolio-prod",
+    "docker:build": "docker build -t portfolio-app .",
+    "docker:build-prod": "docker build -t portfolio-app:prod --target production .",
+    "docker:clean": "docker-compose down && docker system prune -f"
   },
   "eslintConfig": {
     "extends": [

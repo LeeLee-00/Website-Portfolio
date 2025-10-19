@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Development service
+  portfolio-dev:
+    build:
+      context: .
+      target: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    stdin_open: true
+    tty: true
+    networks:
+      - portfolio-network
+
+  # Production service
+  portfolio-prod:
+    build:
+      context: .
+      target: production
+    ports:
+      - "8080:80"
+    networks:
+      - portfolio-network
+    profiles:
+      - production
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  node_modules:
